@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #050518;
+    color: #e0e0eb;
+    font-family: "DM Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a30;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2d2d7a;
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .glass {
+    background: rgba(20, 20, 74, 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(63, 63, 142, 0.3);
+  }
+
+  .glass-light {
+    background: rgba(30, 30, 90, 0.4);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(80, 80, 160, 0.25);
+  }
+
+  .glow-lime {
+    box-shadow: 0 0 20px rgba(200, 241, 53, 0.2), 0 0 40px rgba(200, 241, 53, 0.1);
+  }
+
+  .glow-indigo {
+    box-shadow: 0 0 20px rgba(99, 99, 160, 0.3), 0 0 40px rgba(63, 63, 142, 0.2);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #c8f135 0%, #6363a0 60%, #e0e0eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .score-ring {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
+}
