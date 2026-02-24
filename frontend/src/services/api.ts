@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "/api";
+const BASE_URL = (import.meta as any).env?.VITE_API_URL || "https://ai-resume-analyzer-xof4.onrender.com";
 
 export const api = axios.create({
   baseURL: BASE_URL,
@@ -143,4 +143,4 @@ export const login = async (
 ): Promise<AuthResponse> => {
   const response = await api.post<AuthResponse>("/auth/login", { email, password });
   return response.data;
-};
+};  
