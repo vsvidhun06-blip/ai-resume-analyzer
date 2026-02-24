@@ -20,7 +20,7 @@ async def lifespan(app: FastAPI):
     await init_db()
     logger.info("✅ Database tables ready")
     yield
-    logger.info("👋 Shutting down...")
+    logger.info("🛑 Shutting down...")
 
 
 app = FastAPI(
@@ -35,8 +35,8 @@ app = FastAPI(
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.BACKEND_CORS_ORIGINS,
-    allow_credentials=True,
+    allow_origins=["*"],          # ← Changed from settings.BACKEND_CORS_ORIGINS
+    allow_credentials=False,      # ← Must be False when allow_origins=["*"]
     allow_methods=["*"],
     allow_headers=["*"],
 )
