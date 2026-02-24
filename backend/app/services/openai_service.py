@@ -4,7 +4,7 @@ from openai import AsyncOpenAI
 from app.core.config import settings
 
 logger = logging.getLogger(__name__)
-client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
+client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY, http_client=None)
 
 SYSTEM_PROMPT = """You are an expert HR professional and ATS optimization specialist with 15+ years of experience reviewing resumes for FAANG companies. Analyze resumes and provide detailed feedback. You MUST respond with valid JSON only — no markdown, no text outside the JSON."""
 
