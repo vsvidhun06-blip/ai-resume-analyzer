@@ -1,15 +1,16 @@
-import json
 import logging
-import openai
+import json
+from openai import AsyncOpenAI
 from app.core.config import settings
 
 logger = logging.getLogger(__name__)
 
-openai.api_key = settings.OPENAI_API_KEY
+client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
+
 
 async def analyze_resume(text: str) -> dict:
     try:
-        response = openai.ChatCompletion.create(
+        response = await client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "You are an expert HR professional. Return JSON only."},
@@ -30,9 +31,10 @@ Resume: {text[:3000]}"""}
         logger.error(f"OpenAI error: {e}")
         raise
 
+
 async def analyze_job_match(resume_text: str, job_description: str) -> dict:
     try:
-        response = openai.ChatCompletion.create(
+        response = await client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "You are an expert HR professional. Return JSON only."},
@@ -46,5 +48,5 @@ Job: {job_description[:2000]}"""}
         )
         return json.loads(response.choices[0].message.content)
     except Exception as e:
-        logger.error(f"Job match error: {e}")
+        logger.error(f"OpenAI job match error: {e}")
         raise
